@@ -1,4 +1,4 @@
-<h1 align="center">Rofi notflix</h1>
+<h1 align="center">Rofi Notflix</h1>
 
 A rofi fork of notflix.
 
