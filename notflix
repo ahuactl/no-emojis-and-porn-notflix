@@ -7,8 +7,7 @@ baseurl="https://1337x.wtf"
 cachedir="$HOME/.cache/notflix"
 
 if [ -z $1 ]; then
-    printf "No arguments passed.\n"
-    exit 1
+    printf "No arguments passed.\n"; exit 1
 else
   query=$1
 fi
