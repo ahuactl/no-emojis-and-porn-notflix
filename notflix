@@ -1,25 +1,14 @@
-#!/bin/sh
-
-# Dependencies - webtorrent, mpv
+#!/usr/bin/env sh
 
 mkdir -p $HOME/.cache/notflix
 
-menu="dmenu -i -l 25"
+menu="rofi -dmenu"
 baseurl="https://1337x.wtf"
 cachedir="$HOME/.cache/notflix"
 
-category=$(dmenu -p "Movies? TV? Documentaries? Anime? (1,2,3,4) [NO INPUT = MOVIES]: " <&-)
-
-case $category in
-	"1") category="Movies";;
-	"2") category="TV";;
-	"3") category="Documentaries";;
-	"4") category="Anime";;
-	*) category="Movies";; 
-esac
-
 if [ -z $1 ]; then
-  query=$(dmenu -p "Search Torrent: " <&-)
+    printf "No arguments passed.\n"
+    exit 1
 else
   query=$1
 fi
@@ -67,18 +56,9 @@ LINE=$(paste -d\   $cachedir/size.bw $cachedir/seedleech.bw $cachedir/titles.bw 
   awk '{$1=$1; print}')
 
 if [ -z "$LINE" ]; then
-  notify-send "No Result selected. Exiting..." -i "NONE"
   exit 0
 fi
-notify-send "Searching Magnet seeds" -i "NONE"
+
 url=$(head -n $LINE $cachedir/links.bw | tail -n +$LINE)
 fullURL="${baseurl}${url}/"
 
-# Requesting page for magnet link
-curl -s $fullURL > $cachedir/tmp.html
-magnet=$(grep -Po "magnet:\?xt=urn:btih:[a-zA-Z0-9]*" $cachedir/tmp.html | head -n 1) 
-
-webtorrent "$magnet" --mpv
-
-# Simple notification
-notify-send "Enjoy Watching" -i "NONE"
