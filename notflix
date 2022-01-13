@@ -7,7 +7,7 @@ baseurl="https://1337x.wtf"
 cachedir="$HOME/.cache/notflix"
 
 if [ -z "$1" ]; then
-    notify-send "No arguments passed.\n"
+    notify-send "No arguments passed"
     exit 1
 else
   query=$1
