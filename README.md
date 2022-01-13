@@ -10,14 +10,18 @@ This is a shell script. It scrapes 1337x and gets the magnet link.
 After this it uses [webtorrent](https://webtorrent.io/) to stream the video from the magnet link.
 For scraping, the script uses simple gnu utils like sed, awk, paste, cut.
 
+## Usage
+
+```sh
+notflix <query>
+```
+
 ## Requirements
 
 * [webtorrent](https://webtorrent.io/) - A tool to stream torrent. `npm install webtorrent-cli -g` or `yay -S webtorrent-cli` for Arch Users
+* Rofi 
 
 ## Installation
-
-### Curl
-Curl **notflix** to your `$PATH` and give execute permissions.
 
 ```sh
 sudo curl -sL "https://raw.githubusercontent.com/ahuactl/rofi-notflix/master/notflix" -o /usr/local/bin/notflix
