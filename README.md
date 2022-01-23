@@ -13,19 +13,19 @@ For scraping, the script uses simple gnu utils like sed, awk, paste, cut.
 ## Usage
 
 ```sh
-notflix <query>
+notflix [query]
 ```
 
 ## Requirements
 
 * [webtorrent](https://webtorrent.io/) - A tool to stream torrent. `npm install webtorrent-cli -g` or `yay -S webtorrent-cli` for Arch Users
-* Rofi 
+* [rofi](https://github.com/davatorium/rofi)
 
 ## Installation
 
 ```sh
-sudo curl -sL "https://raw.githubusercontent.com/ahuactl/rofi-notflix/master/notflix" -o /usr/local/bin/notflix
-sudo chmod +x /usr/local/bin/notflix
+# curl -sL "https://raw.githubusercontent.com/ahuactl/rofi-notflix/master/notflix" -o /usr/local/bin/notflix
+# chmod +x /usr/local/bin/notflix
 ```
 - To update, just do `curl` again, no need to `chmod` anymore.
 - To uninstall, simply remove `notflix` from your `$PATH`, for example `sudo rm -f /usr/local/bin/notflix`.
