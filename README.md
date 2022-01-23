@@ -23,7 +23,7 @@ notflix [query]
 
 ## Installation
 
-```sh
+```bash
 # curl -sL "https://raw.githubusercontent.com/ahuactl/rofi-notflix/master/notflix" -o /usr/local/bin/notflix
 # chmod +x /usr/local/bin/notflix
 ```
