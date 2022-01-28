@@ -12,9 +12,9 @@ For scraping, the script uses simple gnu utils like sed, awk, paste, cut.
 
 ## Usage
 
-```sh
-notflix [query]
-tmpdir=[path] notflix [query]
+```console
+$ notflix [query]
+$ tmpdir=[path] notflix [query]
 ```
 
 ## Requirements
