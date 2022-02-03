@@ -2,17 +2,20 @@
 
 mkdir -p $HOME/.cache/notflix
 
-menu="rofi -dmenu"
+menu="rofi -dmenu -p "Movie""
 baseurl="https://1337x.wtf"
 cachedir="$HOME/.cache/notflix"
-tmpdir="${tmpdir:-"/tmp"}"
+tmpdir="/tmp"
+notification="notify-send"
+player="--mpv"
 
 if [ -z "$1" ]; then
-    notify-send "No arguments passed"
-    exit 1
+    query=$(: | rofi -dmenu -p "Movie")
 else
-  query=$1
+    query=$1
 fi
+
+$notification --expire-time=500 "Searching for matches.."
 
 query="$(echo $query | sed 's/ /+/g')"
 
@@ -25,7 +28,7 @@ grep -o '<a href="/torrent/.*</a>' $cachedir/tmp.html |
 
 result_count=$(wc -l $cachedir/titles.bw | awk '{print $1}')
 if [ "$result_count" -lt 1 ]; then
-  notify-send "No results found." -i "NONE"
+  $notification "No results found." -i "NONE"
   exit 0
 fi
 
@@ -64,8 +67,10 @@ fi
 url=$(head -n $LINE $cachedir/links.bw | tail -n +$LINE)
 fullURL="${baseurl}${url}/"
 
+$notification --expire-time=25000 "Loading video"
+
 # Requesting page for magnet link
 curl -s $fullURL > $cachedir/tmp.html
 magnet=$(grep -Po "magnet:\?xt=urn:btih:[a-zA-Z0-9]*" $cachedir/tmp.html | head -n 1) 
 
-webtorrent "$magnet" -q --mpv -o "$tmpdir"
+webtorrent "$magnet" "$player" -q -o "$tmpdir"
