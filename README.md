@@ -18,8 +18,13 @@ $ notflix [query]
 
 ## Requirements
 
-* [webtorrent](https://webtorrent.io/) - A tool to stream torrent. `npm install webtorrent-cli -g` or `yay -S webtorrent-cli` for Arch Users
-* [rofi](https://github.com/davatorium/rofi)
+* [webtorrent](https://webtorrent.io/) - A tool to stream torrent.
+* [rofi](https://github.com/davatorium/rofi) - A window switcher, Application launcher and dmenu replacement.
+
+```console
+# npm install webtorrent-cli -g
+# pacman -S rofi
+```
 
 ## Installation
 
