@@ -3,14 +3,15 @@
 mkdir -p $HOME/.cache/notflix
 
 menu="rofi -dmenu -p "Movie""
-baseurl="https://1337x.wtf"
+baseurl="https://1337x.to"
 cachedir="$HOME/.cache/notflix"
-tmpdir="/tmp"
+tmpdir="$HOME/.local/tmp"
+category="Movies"
 notification="notify-send"
 player="--mpv"
 
 if [ -z "$1" ]; then
-    query=$(: | rofi -dmenu -p "Movie")
+    query=$(: | $menu -theme-str 'listview {enabled: false;} window {y-offset: -150px; width: 40%;} inputbar {padding: 5px;}') 
 else
     query=$1
 fi
@@ -19,8 +20,7 @@ $notification --expire-time=500 "Searching for matches.."
 
 query="$(echo $query | sed 's/ /+/g')"
 
-curl -s https://1337x.to/category-search/$query/Movies/1/ > $cachedir/tmp.html
-#curl -s $baseurl/search/$query/Movies/1/ > $cachedir/tmp.html
+curl -s $baseurl/category-search/$query/$category/1/ > $cachedir/tmp.html
 
 # Get Titles
 grep -o '<a href="/torrent/.*</a>' $cachedir/tmp.html |
@@ -28,7 +28,7 @@ grep -o '<a href="/torrent/.*</a>' $cachedir/tmp.html |
 
 result_count=$(wc -l $cachedir/titles.bw | awk '{print $1}')
 if [ "$result_count" -lt 1 ]; then
-  $notification "No results found." -i "NONE"
+  $notification "No results found" -i "NONE"
   exit 0
 fi
 
@@ -60,7 +60,7 @@ LINE=$(paste -d\   $cachedir/size.bw $cachedir/seedleech.bw $cachedir/titles.bw 
   awk '{$1=$1; print}')
 
 if [ -z "$LINE" ]; then
-    notify-send "No result selected." -i "NONE"
+    # $notification "No result selected" -i "NONE"
     exit 0
 fi
 
