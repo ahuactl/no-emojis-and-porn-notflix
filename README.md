@@ -1,6 +1,6 @@
-<h1 align="center">Rofi Notflix</h1>
+<h1 align="center">webtorrent-rofi</h1>
 
-A rofi fork of notflix.
+A rofi client for scraping.
 
 > Watch BugsWriters video on it - [bugswriter's notflix](https://youtu.be/RFJCL9C46Mc)
 
@@ -13,8 +13,8 @@ For scraping, the script uses simple gnu utils like sed, awk, paste, cut.
 ## Usage
 
 ```bash
-notflix
-notflix [query]
+webtorrent-rofi
+webtorrent-rofi [query]
 ```
 
 ## Requirements
@@ -30,12 +30,11 @@ notflix [query]
 ## Installation
 
 ```console
-# curl -sL "https://raw.githubusercontent.com/ahuactl/rofi-notflix/master/notflix" -o /usr/local/bin/notflix
+# curl -sL "https://raw.githubusercontent.com/ahuactl/webtorrent-rofi/master/webtorrent-rofi" -o /usr/local/bin/webtorrent-rofi
 # chmod +x /usr/local/bin/notflix
 ```
 - To update, just do `curl` again, no need to `chmod` anymore.
-- To uninstall, simply remove `notflix` from your `$PATH`, for example `sudo rm -f /usr/local/bin/notflix`.
+- To uninstall, simply run `sudo rm -f /usr/local/bin/webtorrent-rofi`.
 
 ## License
 This project is licensed under [GPL-3.0](https://raw.githubusercontent.com/Illumina/licenses/master/gpl-3.0.txt).
-
