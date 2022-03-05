@@ -1,14 +1,14 @@
 #!/usr/bin/env sh
 
-mkdir -p $HOME/.cache/notflix
-
 menu="rofi -dmenu"
 baseurl="https://1337x.to"
-cachedir="$HOME/.cache/notflix"
+cachedir="$HOME/.cache/webtorrent-rofi"
 tmpdir="/tmp"
 category="Movies"
 notification="notify-send"
 player="--mpv"
+
+mkdir -p "$cachedir"
 
 if [ -z "$1" ]; then
     query=$(: | $menu -p "Movie" -theme-str 'listview {enabled: false;} window {y-offset: -150px; width: 40%;} inputbar {padding: 5px;}') 
